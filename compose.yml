@@ -1,0 +1,13 @@
+name: homework-fam
+services:
+  backend:
+    build: ./service
+    ports:
+      - "9000:9000"
+   
+  frontend:
+    build: ./clientSide
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend

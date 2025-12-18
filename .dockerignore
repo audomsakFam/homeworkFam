@@ -1,0 +1,4 @@
+./clientSide/node_modules
+./service/node_modules
+./client/.next
+./service/dist
