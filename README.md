@@ -2,7 +2,7 @@
 Option 1
   Docker run
    - docker compose up --build
-   - 
+
 Option 2
   local run
    - service
