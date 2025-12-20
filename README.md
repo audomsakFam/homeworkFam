@@ -31,3 +31,4 @@ docker compose up --build
    ```bash
     npm run dev
    ```
+2. You can now visit http://localhost:3000 to check the result.
