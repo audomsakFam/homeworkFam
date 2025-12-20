@@ -42,7 +42,7 @@ Run the following command at the project root:
      cd service
    ```
    ```bash
-     npm i (Only if not already installed locally during the 'Start the Project' step)
+     npm i // (Only if not already installed locally during the 'Start the Project' step)
    ```
    ```bash
      npm run test
@@ -52,7 +52,7 @@ Run the following command at the project root:
     cd clientSide
    ```
    ```bash
-    npm i (Only if not already installed locally during the 'Start the Project' step)
+    npm i // (Only if not already installed locally during the 'Start the Project' step)
    ```
    ```bash
     npm run test
