@@ -1,1 +1,0 @@
-{"version":3,"file":"menu.controller.d.ts","sourceRoot":"","sources":["menu.controller.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,QAAQ,EAAE,MAAM,SAAS,CAAC;AAI5C,qBAAa,cAAc;IACzB,OAAO,CAAC,WAAW,CAAc;;IAMjC,OAAO,GAAI,KAAK,OAAO,EAAE,KAAK,QAAQ,wCAgBpC;IAEF,SAAS,GAAI,KAAK,OAAO,EAAE,KAAK,QAAQ,wCAqBtC;CACH"}

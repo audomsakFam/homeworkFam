@@ -7,9 +7,9 @@ describe("MenuService", () => {
   it("result should have valid keys and number prices", () => {
     const result = service.getMenu();
 
-    Object.entries(result).forEach(([k, v]) => {
-      expect(Object.values(MenuItem)).toContain(k as MenuItem);
-      expect(typeof v.price).toBe("number");
+    result.forEach((item) => {
+      expect(Object.values(MenuItem)).toContain(item.name);
+      expect(typeof item.price).toBe("number");
     });
   });
 
