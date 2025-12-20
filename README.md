@@ -35,7 +35,7 @@ docker compose up --build
 
 
 ## How to Run Test
-1. Run the following command at the project root:
+Run the following command at the project root:
 
 - service
    ```bash
