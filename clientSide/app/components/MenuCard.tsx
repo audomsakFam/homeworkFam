@@ -8,6 +8,13 @@ import { sseService } from "../services/sse.service";
 import { Socket } from "socket.io-client";
 import { socketService } from "../services/socket.service";
 
+const getHero = async (id: number) => {
+  const res = await fetch(`http://localhost:9000/api/hero/${id}`, {
+    cache: "no-store",
+  });
+  return res.json();
+};
+
 const MenuCard = () => {
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -22,6 +29,8 @@ const MenuCard = () => {
       try {
         setIsLoading(true);
         const res = await menuService.getMenu();
+        await getHero(1);
+
         setMenuItems(res);
       } catch (err) {
         console.error(`failed to fetch: ${err}`);
@@ -45,7 +54,6 @@ const MenuCard = () => {
 
     sseService.eventListen();
     fetchMenuData();
-
     return () => {
       socketService.disconnect();
     };
