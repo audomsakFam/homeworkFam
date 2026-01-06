@@ -1,0 +1,30 @@
+syntax= "proto3";
+
+package hero;
+
+service HeroService {
+  rpc FindOne(HeroById) returns (Hero);
+  rpc Search(SearchQuery) returns (HeroList);
+  rpc CreateHero(HeroInput) returns (Hero);
+}
+
+message HeroById {
+  string id = 1;
+}
+
+message Hero {
+  string id               = 1;
+  string name             = 2;
+  string power            = 3;
+  string highlightedName  = 4;
+  string highlightedPower = 5;
+}
+
+message HeroInput {
+  string name  = 1;
+  string power = 2;
+}
+
+message SearchQuery { string text = 1; }
+
+message HeroList { repeated Hero heroes = 1; }

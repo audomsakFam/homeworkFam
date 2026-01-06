@@ -1,19 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { MenuItem, ReqCalPrice, ResCalPrice } from "../types";
-import { menuService } from "../services/menu.service";
+import { MenuItem, ReqCalPrice, ResCalPrice } from "../../types";
+import { menuService } from "../../services/menu.service";
 import MenuTable from "./MenuTable";
-import { sseService } from "../services/sse.service";
-import { Socket } from "socket.io-client";
-import { socketService } from "../services/socket.service";
+import { sseService } from "../../services/sse.service";
+import { socketService } from "../../services/socket.service";
 
-const getHero = async (id: number) => {
-  const res = await fetch(`http://localhost:9000/api/hero/${id}`, {
-    cache: "no-store",
-  });
-  return res.json();
-};
 
 const MenuCard = () => {
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
@@ -29,7 +22,6 @@ const MenuCard = () => {
       try {
         setIsLoading(true);
         const res = await menuService.getMenu();
-        await getHero(1);
 
         setMenuItems(res);
       } catch (err) {

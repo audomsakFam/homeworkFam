@@ -17,18 +17,23 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "gen:proto": "protoc -I=./shared --plugin=protoc-gen-ts_proto=.\\node_modules\\.bin\\protoc-gen-ts_proto.cmd --ts_proto_out=./shared/models ./shared/hero.proto --ts_proto_opt=esModuleInterop=true,nestJs=true"
   },
   "dependencies": {
+    "@elastic/elasticsearch": "8.12",
     "@grpc/grpc-js": "^1.14.3",
     "@grpc/proto-loader": "^0.8.0",
     "@nestjs/common": "^11.0.1",
     "@nestjs/core": "^11.0.1",
+    "@nestjs/elasticsearch": "^11.1.0",
     "@nestjs/mapped-types": "*",
     "@nestjs/microservices": "^11.1.11",
     "@nestjs/platform-express": "^11.0.1",
+    "protobufjs": "^8.0.0",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "ts-proto": "^2.10.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",

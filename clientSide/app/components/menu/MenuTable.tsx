@@ -1,6 +1,6 @@
 "use client";
 
-import { MenuItem, ResCalPrice } from "../types";
+import { MenuItem, ResCalPrice } from "../../types";
 type Props = {
   menuItems: MenuItem[];
   isLoading: boolean;

@@ -3,6 +3,9 @@
     "module": "nodenext",
     "target": "esnext",
     "types": ["node", "jest"],
+    "paths": {
+      "@shared/*": ["../serverg-rpc/shared/*"] 
+    },
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,

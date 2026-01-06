@@ -6,12 +6,25 @@ import { GrpcMethod } from '@nestjs/microservices';
 export class HerosController {
   constructor(private readonly herosService: HerosService) {}
 
+  @GrpcMethod('HeroService', 'Search')
+  async search(data: { text: string }) {
+    const result = await this.herosService.search(data.text);
+    console.log('Data sending from NestJS:', JSON.stringify(result, null, 2)); // ดูว่ามี highlightedName ไหม
+    return { heroes: result };
+  }
+
   @GrpcMethod('HeroService', 'FindOne')
-  findOne(data: { id: number }) {
-    const heros = [
-      { id: 1, name: 'Ironman', power: 'Tech' },
-      { id: 2, name: 'Thor', power: 'Thunder' },
-    ];
-    return heros.find((h) => h.id === data.id);
+  async findOne(data: { id: string }) {
+    console.log(data.id);
+    const hero = await this.herosService.findOne(data.id);
+    if (!hero) {
+      return {};
+    }
+    return hero;
+  }
+
+  @GrpcMethod('HeroService', 'CreateHero')
+  async createHero(data: { name: string; power: string }) {
+    return await this.herosService.create(data.name, data.power);
   }
 }
