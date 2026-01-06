@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 import { MenuItem, ReqCalPrice, ResCalPrice } from "../types";
 import { menuService } from "../services/menu.service";
 import MenuTable from "./MenuTable";
+import { sseService } from "../services/sse.service";
+import { Socket } from "socket.io-client";
+import { socketService } from "../services/socket.service";
 
 const MenuCard = () => {
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
@@ -12,6 +15,7 @@ const MenuCard = () => {
   const [calResult, setCalResult] = useState<ResCalPrice | null>(null);
   const [quantities, setQuantities] = useState<Record<string, number>>({});
   const [hasMember, setHasMember] = useState(false);
+  const [isConnected, setIsConnected] = useState(false);
 
   useEffect(() => {
     const fetchMenuData = async () => {
@@ -26,7 +30,25 @@ const MenuCard = () => {
       }
     };
 
+    socketService.socketConnect();
+
+    socketService.onEvents(
+      (id) => {
+        setIsConnected(true);
+        console.log("Connected with ID:", id);
+      },
+      () => {
+        setIsConnected(false);
+        console.log("Disconnected");
+      }
+    );
+
+    sseService.eventListen();
     fetchMenuData();
+
+    return () => {
+      socketService.disconnect();
+    };
   }, []);
 
   const handleCalculate = () => {

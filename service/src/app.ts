@@ -23,3 +23,20 @@ app.use("/api/menu", menuRoutes);
 app.get("/", (req, res) => {
   res.send({ msg: "ok" });
 });
+
+app.get("/streaming", (req, res) => {
+  res.setHeader("Content-Type", "text/event-stream");
+  res.setHeader("Connection", "keep-alive");
+  res.flushHeaders();
+  console.log("client connected");
+
+  const test = setInterval(() => {
+    res.write(`data: ${JSON.stringify({ hello: "world" })}\n\n`);
+  }, 3000);
+
+  res.on("close", () => {
+    console.log("client disconnent");
+    clearTimeout(test);
+    res.end();
+  });
+});
