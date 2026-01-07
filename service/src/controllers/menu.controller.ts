@@ -3,11 +3,7 @@ import { MenuService } from "../services/menu.service";
 import { CalPriceInput, MenuItem } from "../types";
 
 export class MenuController {
-  private menuService: MenuService;
-
-  constructor() {
-    this.menuService = new MenuService();
-  }
+  constructor(private menuService: MenuService) {}
 
   getMenu = (req: Request, res: Response) => {
     try {
