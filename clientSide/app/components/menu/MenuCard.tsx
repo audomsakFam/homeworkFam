@@ -7,7 +7,6 @@ import MenuTable from "./MenuTable";
 import { sseService } from "../../services/sse.service";
 import { socketService } from "../../services/socket.service";
 
-
 const MenuCard = () => {
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
