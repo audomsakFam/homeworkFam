@@ -13,3 +13,11 @@ export type ResCalPrice = {
   discount: number;
   total: number;
 };
+
+export type Heroes = {
+  id: string;
+  name: string;
+  power: string;
+  highlightedName: string;
+  highlightedPower: string;
+};
