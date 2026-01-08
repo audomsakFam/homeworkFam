@@ -18,3 +18,4 @@ export type CalResult = {
   discount: number;
   total: number;
 };
+

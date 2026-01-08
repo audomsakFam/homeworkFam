@@ -1,23 +1,25 @@
 import { promisify } from "util";
-import { HeroInput, HeroServiceClient } from "../../../serverg-rpc/shared/models/hero";
+import {
+  Hero,
+  HeroById,
+  HeroInput,
+  HeroList,
+  HeroServiceClient,
+  SearchQuery,
+} from "../../../serverg-rpc/shared/models/hero";
+import { BaseGrpcService } from "./base-grpc.service";
 
-export class HeroService {
-  private findOneRpc: any;
-  private createRpc: any;
-  private searchRpc: any;
-
-  constructor(private client: HeroServiceClient) {
-    this.findOneRpc = promisify(this.client.findOne).bind(this.client);
-    this.createRpc = promisify(this.client.createHero).bind(this.client);
-    this.searchRpc = promisify(this.client.search).bind(this.client);
-  }
+export class HeroService extends BaseGrpcService<HeroServiceClient> {
+  private findOneRpc = this.createRpc<HeroById, Hero>("findOne");
+  private createRpcMethod = this.createRpc<HeroInput, Hero>("createHero");
+  private searchRpc = this.createRpc<SearchQuery, HeroList>("search");
 
   async getHeroById(id: string) {
     return await this.findOneRpc({ id });
   }
 
   async createNewHero(data: HeroInput) {
-    return await this.createRpc(data);
+    return await this.createRpcMethod(data);
   }
 
   async searchHeroes(text: string) {
