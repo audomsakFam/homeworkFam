@@ -1,8 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 import HeroTable from "@/app/components/hero/HeroTable";
-import { apiRequest } from "@/app/lib/api-client";
 import { useDebounce } from "@/app/lib/useDebounce";
 import { heroesService } from "@/app/services/heroes.service";
 import { Heroes } from "@/app/types";
@@ -109,14 +107,14 @@ const HeroPage = () => {
         {showSuggestions && suggestions.length > 0 && (
           <div className="absolute top-full left-0 w-full bg-white border border-t-0 border-gray-200 rounded-b-3xl shadow-lg z-10 overflow-hidden">
             <ul>
-              {suggestions.map((item, index) => (
+              {suggestions.map((item) => (
                 <li
                   key={item.id}
                   onClick={() => handleSearch(item.name)}
                   className="px-4 py-3 hover:bg-gray-50 cursor-pointer flex items-center gap-3 transition-colors"
                 >
                   <svg
-                    className="w-4 h-4 text-gray-400 min-w-[16px]"
+                    className="w-4 h-4 text-gray-400 min-w-4"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
